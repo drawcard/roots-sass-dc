@@ -1,0 +1,54 @@
+/* Helper classes useful to Drawcard development work */
+
+// Media Queries
+// -------------------------
+
+/* How to use: http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+ * Bootstrap by default uses a "Mobile first" philosophy whereby all CSS rules apply to <768px layouts, unless
+ * they are specifically overridden by the below media queries, that target the larger screen formats.
+*/
+
+$screen-xs:480px !default;
+ $screen-sm:768px !default;
+ $screen-md:992px !default;
+ $screen-lg:1200px !default;
+ $screen-xs-min:$screen-xs !default;
+ $screen-sm-min:$screen-sm !default;
+ $screen-md-min:$screen-md !default;
+ $screen-lg-min:$screen-lg !default; 
+
+//Media query mixins
+@mixin respond-to($media) {
+  //Tweaked to match Bootstrap's "mobile first" philosophy
+  @if $media==tablet {
+    @media (min-width: $screen-sm-min) {
+      @content;
+
+    }
+  }
+  @else if $media==desktop {
+    @media (min-width: $screen-md-min) {
+      @content;
+
+    }
+  }
+  @else if $media==widescreen {
+    @media (min-width: $screen-lg-min) {
+      @content;
+
+    }
+  }
+  @else if $media==print {
+    @media only print {
+      @content;
+
+    }
+  }
+}
+//Disable margin and padding on some things
+.no-margin {
+  margin: 0px;
+}
+.no-padding {
+  padding: 0px;
+}
